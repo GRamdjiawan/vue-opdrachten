@@ -1,4 +1,4 @@
-# hoofdstuk3
+# vacationpicker
 
 ## Project setup
 ```
