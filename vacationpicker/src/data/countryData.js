@@ -24,6 +24,14 @@ const countryData = {
             details: 'The capital of Germany',
             img: 'berlin.jpg'
         },
+        {
+            id:4,
+            name: 'Japan',
+            capital: 'Tokyo',
+            cost: 5000,
+            details: 'The capital of Japan',
+            img: 'tokyo.jpg'
+        },
     ],
 
      list1: [10,20,30,40,50],
