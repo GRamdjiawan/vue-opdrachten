@@ -26,7 +26,10 @@
         <ul class="list-group" v-for="(country, index) in countryData.countries" v-bind:key="country.id"
              @click="selectCountry(index)">
           <li class="list-group-item"  v-bind:title="country.details" v-bind:id="country.id">
-            {{country.name}}
+            <span v-bind:id="country.id" v-bind:title="country.details">
+                {{ country.name }}
+            </span>
+
           </li>
         </ul>
 
@@ -96,6 +99,9 @@ export default {
     }
   },
 
+
+
+
   methods: {
     countUp() {
       this.counter++;
@@ -114,10 +120,14 @@ export default {
     filterCountries() {
       this.filteredCountries = this.countryData.countries.filter(country => country.cost < this.selectedCost)
     }
-
-
   },
-
+  filters: {
+    uppercase(value){
+      console.warn("test");
+      if (!value) return;
+      return value.toUpperCase();
+    }
+  },
   computed: {
     selectedCountry() {
 
