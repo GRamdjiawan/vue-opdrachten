@@ -29,6 +29,19 @@
             {{country.name}}
           </li>
         </ul>
+
+        <h2>Destinations cheaper than:</h2>
+        <select class="form-control-sm" v-model="selectedCost" @change="filterCountries()">
+          <option v-for="(cost, index) in costs" :key="index" :value="cost">
+            {{cost}}
+          </option>
+
+        </select>
+        <ul class="list-group" >
+          <li v-for="(country, index) in filteredCountries" :key="index" class="list-group-item">
+            {{country.name}} (EUR: {{country.cost}})
+          </li>
+        </ul>
       </div>
 
 
@@ -63,14 +76,22 @@
 
 <script>
 import countryData from "@/data/countryData";
+import mixins from "@/mixins/mixins";
+
+
 export default {
   name: "VacationPicker",
+  mixins: [mixins],
 
   data() {
     return {
       countryData,
       counter: 0,
       selectedCountryIndex: 0,
+
+      selectedCost: 1000,
+      costs: [1000,2000,3000,4000,5000,6000],
+      filteredCountries: [],
 
     }
   },
@@ -90,9 +111,10 @@ export default {
 
     },
 
-    getImgUrl(img){
-      return require('../assets/countries/' + img)
+    filterCountries() {
+      this.filteredCountries = this.countryData.countries.filter(country => country.cost < this.selectedCost)
     }
+
 
   },
 
@@ -113,7 +135,13 @@ export default {
       return countryData.countries[this.selectedCountryIndex].cost > 4000;
     },
 
-  }
+
+  },
+  created() {
+    console.log('Component VacationPicker.vue created')
+
+  },
+
 }
 
 
