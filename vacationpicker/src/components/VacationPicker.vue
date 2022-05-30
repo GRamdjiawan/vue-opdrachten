@@ -1,29 +1,34 @@
 <template>
   <div class="container-fluid">
-      <div class="row">
+      <div class="row my-5">
         <div class="col-md-2 "></div>
-        <div class="col-md-8 d-flex justify-content-center align-content-center">
-          <h1>Pick your vacation <br> counter: {{counter}}</h1>
+        <div class="col-md-8 d-flex justify-content-center align-content-center ">
+          <h1 class="display-3 ">Pick your
+            <span class="text-success">
+            vacation
+            </span>
+<!--            <br> counter: {{counter}}-->
+          </h1>
 
         </div>
         <div class="col-md-2"></div>
       </div>
 
 
-    <div class="row">
+    <div class="row border-top border-dark">
       <div class="col-md-2"></div>
       <div class="col-md-8 d-flex justify-content-center align-content-center">
-        <div class="Buttons-container">
-          <button @click="countUp" class="btn btn-success">+</button>
-          <button @click="countDown" class="btn btn-danger">-</button>
-        </div>
+<!--        <div class="Buttons-container">-->
+<!--          <button @click="countUp" class="btn btn-success">+</button>-->
+<!--          <button @click="countDown" class="btn btn-danger">-</button>-->
+<!--        </div>-->
       </div>
       <div class="col-md-2"></div>
     </div>
 
-    <div class="row">
-      <div class="col-6">
-        <ul class="list-group" v-for="(country, index) in countryData.countries" v-bind:key="country.id"
+    <div class="row ">
+      <div class="col-4 my-5">
+        <ul class="list-group " v-for="(country, index) in countryData.countries" v-bind:key="country.id"
              @click="selectCountry(index)">
           <li class="list-group-item"  v-bind:title="country.details" v-bind:id="country.id">
             <span v-bind:id="country.id" v-bind:title="country.details">
@@ -32,24 +37,11 @@
 
           </li>
         </ul>
-
-        <h2>Destinations cheaper than:</h2>
-        <select class="form-control-sm" v-model="selectedCost" @change="filterCountries()">
-          <option v-for="(cost, index) in costs" :key="index" :value="cost">
-            {{cost}}
-          </option>
-
-        </select>
-        <ul class="list-group" >
-          <li v-for="(country, index) in filteredCountries" :key="index" class="list-group-item">
-            {{country.name}} (EUR: {{country.cost}})
-          </li>
-        </ul>
       </div>
 
 
-      <div class="col-6">
-        <h2>Selected:</h2>
+      <div class="col-4 my-4">
+        <h2>{{ selectedCountry.name }}</h2>
         <ul class="list-group" >
           <li class="list-group-item">
             {{ selectedCountry.id }}
@@ -66,12 +58,48 @@
           <li class="list-group-item">
             <img :src=" getImgUrl(selectedCountry.img)" :alt="selectedCountry.img" class="img-fluid">
           </li>
-          <li class="list-group-item" v-if="isExpensive">
-            <p class="bg-danger">Expensive!</p>
+          <li class="list-group-item" v-show="onSale">
+            <p class="bg-warning px-2">On Sale!</p>
+            <p>{{ text}}</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 ">
+        <h2 class="mt-3">Destinations cheaper than:</h2>
+        <select class="form-control-sm" v-model="selectedCost"  @change="filterCountries()">
+          <option v-for="(cost, index) in costs" :key="index" :value="cost">
+            {{cost}}
+          </option>
+
+        </select>
+        <ul class="list-group" >
+          <li v-for="(country, index) in filteredCountries" :key="index" class="list-group-item">
+            {{country.name}} (EUR: {{country.cost}})
           </li>
         </ul>
       </div>
     </div>
+
+    <div class="row border-top border-dark">
+      <div class="col-md-4 mt-2">
+        <h2>Add country</h2>
+        <input type="text" v-model="newCountry" @keyup.enter="addCountry(newCountry)" class="form-control" placeholder="Add a new country">
+        <button @click="addCountry(newCountry)" class="btn btn-outline-dark">Add country</button>
+
+
+      </div>
+      <div class="col-md-4 mt-5">
+        <ul class="list-group">
+          <li class="list-group-item" v-for="(country, index) in newCountries" :key="index">
+            {{country}}
+            <button> <i class="bi bi-trash3"></i></button>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+
   </div>
 
 
@@ -92,9 +120,16 @@ export default {
       counter: 0,
       selectedCountryIndex: 0,
 
-      selectedCost: 1000,
-      costs: [1000,2000,3000,4000,5000,6000],
+      selectedCost: 0,
+      costs: [0,1000,2000,3000,4000,5000,6000],
       filteredCountries: [],
+
+      //Hij heeft een voorkeur naar de text: '' van de component
+      // text: 'component tekstje ouleh'
+
+      newCountry: '',
+      newCountries: [],
+
 
     }
   },
@@ -119,15 +154,14 @@ export default {
 
     filterCountries() {
       this.filteredCountries = this.countryData.countries.filter(country => country.cost < this.selectedCost)
-    }
+    },
+
+    addCountry(country) {
+      this.newCountries.push(country);
+      this.newCountry = '';
+    },
   },
-  filters: {
-    uppercase(value){
-      console.warn("test");
-      if (!value) return;
-      return value.toUpperCase();
-    }
-  },
+
   computed: {
     selectedCountry() {
 
@@ -141,8 +175,8 @@ export default {
       }
     },
 
-    isExpensive() {
-      return countryData.countries[this.selectedCountryIndex].cost > 4000;
+    onSale() {
+      return countryData.countries[this.selectedCountryIndex].cost < 1000;
     },
 
 
@@ -165,6 +199,7 @@ div {
 
 h1 {
   text-align: center;
+  font-weight: bold;
 }
 
 .countries {
