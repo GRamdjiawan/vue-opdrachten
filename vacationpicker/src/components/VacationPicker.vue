@@ -103,15 +103,13 @@
         </ul>
       </div>-->
     </div>
-
-    <div class="row border-top border-dark">
+    <text-entry/>
+<!--    <div class="row border-top border-dark">
       <div class="col-md-4 mt-2">
         <h2>Add country</h2>
         <input type="text" v-model="newCountry" @keyup.enter="addCountry(newCountry)" class="form-control" placeholder="Add a new country">
         <br>
         <button @click="addCountry(newCountry)" class="btn btn-outline-dark">Add country</button>
-
-
       </div>
       <div class="col-md-4 mt-5">
         <ul class="list-group">
@@ -122,7 +120,10 @@
         </ul>
       </div>
       <div class="col-md-4"></div>
-    </div>
+
+
+
+    </div>-->
 
   </div>
 
@@ -132,10 +133,13 @@
 <script>
 import countryData from "@/data/countryData";
 import mixins from "@/mixins/mixins";
+import textEntry from "@/components/TextEntry";
 
 
 export default {
   name: "VacationPicker",
+  components: {textEntry},
+
   mixins: [mixins],
 
   data() {
