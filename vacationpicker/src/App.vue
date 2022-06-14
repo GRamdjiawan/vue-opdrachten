@@ -1,21 +1,13 @@
 <template>
-  <VacationPicker/>
+  <div class="container">
+    <router-view/>
+  </div>
 </template>
-
 <script>
-import VacationPicker from "@/components/VacationPicker";
-
-
 export default {
-  name: 'App',
-  components: {
-    VacationPicker,
-
-  }
+  name: 'app',
+  components: {}
 }
 </script>
-
 <style>
-
-
 </style>

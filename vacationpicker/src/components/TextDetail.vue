@@ -1,5 +1,6 @@
 <template>
-<h2>{{myInput}}</h2>
+  <h1>wagwan</h1>
+
 </template>
 
 <script>

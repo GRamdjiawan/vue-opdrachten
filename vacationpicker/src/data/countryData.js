@@ -6,7 +6,7 @@ const countryData = {
             capital: 'Washington',
             cost: 1250,
             details: 'United States are among the most visited',
-            img: 'washington.jpg'
+            img: 'washington.jpg',
         },
         {
             id:2,
@@ -34,7 +34,6 @@ const countryData = {
         },
     ],
 
-     list1: [10,20,30,40,50],
 }
 
 
