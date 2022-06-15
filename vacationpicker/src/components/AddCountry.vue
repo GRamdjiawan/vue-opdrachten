@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-4"></div>
       </div>-->
-    <h1>nigga</h1>
+    <h1>Add country</h1>
 </template>
 
 <script>
