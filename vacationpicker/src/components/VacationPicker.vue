@@ -34,9 +34,6 @@
           <br>
           Capital: <b>{{ selectedCountry.capital }}</b>
           <br>
-
-
-
         </h2>
         <span v-if="onSale" class="text-dark ">
             ON SALE!!
@@ -51,18 +48,16 @@
         <country-detail v-if="selectedCountry" @favorite="favorite($event)" :country="selectedCountry"/>
       </div>
     </div>
-    <text-entry/>
   </div>
 </template>
 <script>
 import countryData from "@/data/countryData";
 import mixins from "@/mixins/mixins";
-import textEntry from "@/components/TextEntry";
 import countryDetail from "@/components/CountryDetail";
 
 export default {
   name: "VacationPicker",
-  components: {textEntry, countryDetail},
+  components: { countryDetail},
   mixins: [mixins],
   data() {
     return {

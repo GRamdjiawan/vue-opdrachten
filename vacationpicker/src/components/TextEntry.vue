@@ -1,7 +1,6 @@
 <template>
   <div class="row border-top border-dark my-4">
     <div class="col-md-4 d-flex ">
-      <h2>countrydetail maken</h2>
     </div>
 
     <div class="col-md-4 d-flex justify-content-center align-items-center">
