@@ -1,6 +1,7 @@
 import {createRouter, createWebHashHistory} from "vue-router";
 import VacationPicker from "@/components/VacationPicker";
 import AddCountry from "@/components/AddCountry";
+import CountryDetail from "@/components/CountryDetail";
 
 
 /*const routes = {
@@ -19,6 +20,12 @@ const routes = [
         name: 'add',
         component: AddCountry
     },
+    {
+        path: '/detail',
+        name: 'detail',
+        component: CountryDetail
+    },
+
 
 ]
 

@@ -12,12 +12,12 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="mav-items">
-              <router-link to="/" class="nav-link">
+              <router-link to="/" class="nav-link" exact>
                 Home
               </router-link>
             </li>
             <li class="mav-items">
-              <router-link to="add" class="nav-link">
+              <router-link to="add" class="nav-link" exact>
                 Add Country
               </router-link>
             </li>
