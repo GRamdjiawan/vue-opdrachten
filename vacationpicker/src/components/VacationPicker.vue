@@ -13,22 +13,36 @@
     </div>
 
     <div class="row ">
-      <div class="col-6 my-5">
-        <h2 class="display-6 bg-warning bg-opacity-25 p-3 text-center">
-          {{ selectedCountry.name }}
-          <br>
-          Capital: <b>{{ selectedCountry.capital }}</b>
-          <br>
-        </h2>
-        <span v-if="onSale" class="text-dark ">
+<!--      <div class="col-md-6">
+    <ul class="list-group">
+          <li class=" list-group-item"  v-for="(country, index) in countryData.countries" v-bind:key="country.id" @click="selectedCountryIndex = index ">
+              {{ index + 1 }}-
+              {{ country.name }}
+          </li>
+        </ul>
+      </div>-->
+      <div class="col-md-6 border border-dark d-flex flex-column justify-content-evenly">
+
+     <h2 class="display-6 bg-warning bg-opacity-25 p-3 text-center">
+       Country: <b>{{selectedCountry.name}}</b>
+        <br>
+        Capital: <b>{{ selectedCountry.capital }}</b>
+        <br>
+     </h2>
+        <br>
+
+        <span v-if="onSale" class="text-dark border border-dark">
             ON SALE!!
           </span>
+        <br>
+
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-          <button @click="selectedCountryIndex--;" class="btn btn-danger">Back</button>
+          <button @click="selectedCountryIndex--" class="btn btn-danger">Back</button>
           <button @click="selectedCountryIndex++" class="btn btn-success">Next</button>
           <button @click="hideDetails" class="btn btn-warning">Hide details</button>
         </div>
       </div>
+
       <div class="col-md-6">
         <country-detail v-if="selectedCountry" @favorite="favorite($event)" :country="selectedCountry"/>
       </div>
